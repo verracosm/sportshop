@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid col-9">
+	{% if koszyk %}
+		<h1 class="text-center mt-5">Koszyk pełen produktów i wesoły</h1>
+	{% else %}
+		<h1 class="text-center mt-5">Koszyk pusty i smutny</h1>
+	{% endif %}
+	<hr>
+	<div class="row mt-5 text-center">
+		{% for entry in koszyk %}
+			<div class="col-3 mb-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">{{entry.product.name}}</a>
+                </h4>
+                <h5>{{entry.product.price}}zł</h5>
+                <p class="card-text">{{ entry.product.description }}</p>
+                <p>Sztuk: {{ entry.amount }}</p>
+              </div>
+            </div>
+          </div>
+			{% endfor %}
+	</div> <!-- row.// -->
+	<div class="row">
+		{% if koszyk %}
+		<div class="text-center mx-auto mt-3">
+			<a href="{% url 'add-order' %}" class="btn btn-sm btn-primary add-order-button">Zloz zamowienie</a>
+			<a href="{% url 'delete-basket' %}" class="btn btn-sm btn-danger clear-basket-button">Wyczyść koszyk</a>
+		</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

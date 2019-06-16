@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex">
+	<div class="col-12">
+		<div class="form text-center mt-5 col-4 mx-auto">
+			<form method = "post" class="form-signin">
+			      <img class="mb-3 mt-3" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+			      <h1 class="h3 mb-3 font-weight-normal">Witamy w Seba Morta Bazar </h1>
+			      <h2 class="">Zaloguj się</h2>
+			      {% csrf_token %}
+			      {{ form.as_p }}
+			      <button type="submit" class="btn btn-success">Zaloguj się</button>
+			  	  <a href="{% url 'register' %}" class="btn btn-primary">Załóż konto</a>
+			      <p class="mt-5 mb-3 text-muted">&copy; Sebastian Morta studio 2019</p>
+		    </form>
+		</div>
+	</div>
+</div>
+{% endblock %}

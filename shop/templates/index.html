@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid col-9">
+	<h1 class="text-center mt-5">Nasze produkty</h1>
+	<hr>
+	<div class="row mt-5">
+		{% for entry in produkt %}
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">{{entry.name}}</a>
+                </h4>
+                <h5>{{entry.price}}zł</h5>
+                <p class="card-text">{{ entry.description }}</p>
+              </div>
+              <div class="card-footer text-center">
+                <a style="color:white" data-url="{% url 'add-to-basket' pk=entry.pk%}" product-pk="{{entry.pk}}" class="btn btn-sm btn-primary add-to-basket-button">Dodaj do koszyka</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+	</div>
+{% endblock %}

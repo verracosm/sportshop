@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row mt-5">
+		<div class="col-8 mx-auto text-center">
+			{% if orders %}
+			<h1 class="text-center">Moje zamówienia</h1>
+			{% else %}
+			<h1 class="text-center">Brak zamówień</h1>
+			{% endif %}
+			{% for order in orders %}
+			<div class="col-4 mx-auto mt-3">
+				<figure class="card card-product">
+					<figcaption class="info-wrap">
+							<h4 class="title">{{ order.product.name}}</h4>
+							<p class="desc">{{order.product.description}}</p>
+					</figcaption>
+					<div class="bottom-wrap">
+						<div class="price-wrap h5">
+							<span class="price-new">{{ order.product.price }}</span>
+							<span class="price-new">{{ order.amount }}</span>
+						</div> <!-- price-wrap.// -->
+					</div> <!-- bottom-wrap.// -->
+					{% if order.order_status == 1 %}
+					<h1 style="color: red">Niezazpłacone</h1>
+					{% else %}
+					<h1 style="color: green">Zapłacone</h1>
+					{% endif %}
+				</figure>
+			</div> <!-- col // -->
+			{% endfor %}
+			{% if orders %}
+			<a href="{% url 'delete-basket' %}" class="btn btn-sm btn-primary pay-order-button">Opłać</a>
+			{% endif %}
+		</div>
+	</div> <!-- row.// -->
+</div>
+{% endblock %}
